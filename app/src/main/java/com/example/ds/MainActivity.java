@@ -78,9 +78,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         Cursor cursor = getHot();
-        cursor.moveToFirst();
-        String hot = cursor.getString(0);
-        tv.setText("今日熱賣:"+hot);
+        if(cursor.getCount()!=0){
+            cursor.moveToFirst();
+            String hot = cursor.getString(0);
+            tv.setText("今日熱賣:"+hot);
+        }else{
+            tv.setText("想喝什麼?");
+        }
     }
 
     public Cursor getHot(){
