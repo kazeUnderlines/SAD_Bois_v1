@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SubActivity">
+
+    <TextView
+        android:id="@+id/itemTextview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="選項"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="甜度"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@id/itemTextview" />
+
+    <RadioGroup
+        android:id="@+id/sweetnessRg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <RadioButton
+            android:id="@+id/fullRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:checked="true"
+            android:text="全糖"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/twoThirdRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="少糖"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/halfRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="半糖"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/oneThirdRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="微糖"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/sugerFreeRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="無糖"
+            android:textSize="20sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="冰塊量"
+        android:textSize="24sp"
+        app:layout_constraintTop_toBottomOf="@+id/sweetnessRg"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <RadioGroup
+        android:id="@+id/iceRg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/textView5">
+
+        <RadioButton
+            android:id="@+id/normalIceRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:checked="true"
+            android:text="正常冰"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/halfIceRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="少冰"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/lessIceRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="微冰"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/iceFreeRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="去冰"
+            android:textSize="20sp" />
+
+        <RadioButton
+            android:id="@+id/hotRb"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:text="熱飲"
+            android:textSize="20sp" />
+
+    </RadioGroup>
+
+
+    <Button
+        android:id="@+id/buttonConfirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="確認"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@id/buttonBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="返回"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="杯數:"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonConfirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iceRg" />
+
+    <Spinner
+        android:id="@+id/amountSpn"
+        android:layout_width="370dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:entries="@array/spnnr_list"
+        android:spinnerMode="dialog"
+        app:layout_constraintBottom_toTopOf="@+id/buttonConfirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/iceRg" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
