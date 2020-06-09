@@ -90,7 +90,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Cursor getHot(){
-        return db.rawQuery("SELECT "+rdbContract.itemEntry.PRODUCT_NAME+", COUNT(*) FROM "+rdbContract.itemEntry.TABLE_NAME+" GROUP BY "+rdbContract.itemEntry.PRODUCT_NAME+" ORDER BY COUNT(*) DESC;",null);
+        return db.rawQuery("SELECT "+rdbContract.itemEntry.PRODUCT_NAME+
+                ", SUM("
+                +rdbContract.itemEntry.AMOUNT+
+                ") FROM "+
+                rdbContract.itemEntry.TABLE_NAME+
+                " GROUP BY "+
+                rdbContract.itemEntry.PRODUCT_NAME+
+                " ORDER BY SUM(amount) DESC;",null);
     }
 
 
