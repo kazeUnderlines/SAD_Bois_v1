@@ -29,8 +29,10 @@ import static com.example.ds.data.SharedData.orderSerial;
 public class CartActivity extends AppCompatActivity {
     ListView lv;
     Button btCash, btJKO, btBack, btClear;
+    TextView tvTotal;
     rdbHelper rdbh;
     SQLiteDatabase db;
+    int total=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,9 @@ public class CartActivity extends AppCompatActivity {
         btBack = findViewById(R.id.btBack);
         lv = findViewById(R.id.cartLv);
         btClear = findViewById(R.id.btClear);
+        tvTotal = findViewById(R.id.tvTotal);
+        getTotal();
+        tvTotal.setText("總金額:$"+total);
         ArrayAdapter adapter = new ArrayAdapter<items>(this, android.R.layout.simple_list_item_2,android.R.id.text1,itemList) {
             @Override
             public View getView(int pos, View convert, ViewGroup group) {
@@ -58,19 +63,29 @@ public class CartActivity extends AppCompatActivity {
         btCash.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                insertToDb("Cash");
-                Toast toast=Toast.makeText(getApplicationContext(),"請持單據至櫃台結帳!",Toast.LENGTH_SHORT);
-                toast.show();
-                mainAct();
-                finish();
+                if(itemList.size()!=0) {
+                    insertToDb("Cash");
+                    Toast toast = Toast.makeText(getApplicationContext(), "請持單據至櫃台結帳!", Toast.LENGTH_SHORT);
+                    toast.show();
+                    mainAct();
+                    finish();
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "購物車內無項目!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
         btJKO.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                insertToDb("JKO");
-                jkoAct();
-                finish();
+                if(itemList.size()!=0){
+                    insertToDb("JKO");
+                    jkoAct();
+                    finish();
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "購物車內無項目!", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
         });
         btBack.setOnClickListener(new View.OnClickListener(){
@@ -92,20 +107,21 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+    public void getTotal(){
+        for(items item:itemList){
+            total = total + item.getPrice();
+        }
+    }
     public void insertToDb(String payment){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String date = sdf.format(new Date());
         orderSerial++;
         String orderNumber = date + String.format("%04d",orderSerial);
-        int totalPrice = 0;
-        for(items p:itemList){
-            totalPrice = totalPrice + p.getPrice();
-        }
         ContentValues orderCv = new ContentValues();
         orderCv.put(rdbContract.orderEntry.ORDER_NUMBER,orderNumber);
         orderCv.put(rdbContract.orderEntry.DATE,date);
         orderCv.put(rdbContract.orderEntry.PAYMENT,payment);
-        orderCv.put(rdbContract.orderEntry.TOTAL_PRICE,totalPrice);
+        orderCv.put(rdbContract.orderEntry.TOTAL_PRICE,total);
         db.insert(rdbContract.orderEntry.TABLE_NAME,null,orderCv);
 
         for(items item:itemList) {

@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 String temp = lv.getItemAtPosition(position).toString();
                 intent.putExtra("item",temp);
                 startActivity(intent);
+                finish();
             }
         });
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -75,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 cartAct();
+                finish();
             }
         });
         Cursor cursor = getHot();
