@@ -28,7 +28,7 @@ import static com.example.ds.data.SharedData.orderSerial;
 
 public class CartActivity extends AppCompatActivity {
     ListView lv;
-    Button btCash, btJKO, btBack;
+    Button btCash, btJKO, btBack, btClear;
     rdbHelper rdbh;
     SQLiteDatabase db;
     @Override
@@ -41,6 +41,7 @@ public class CartActivity extends AppCompatActivity {
         btJKO = findViewById(R.id.btJKO);
         btBack = findViewById(R.id.btBack);
         lv = findViewById(R.id.cartLv);
+        btClear = findViewById(R.id.btClear);
         ArrayAdapter adapter = new ArrayAdapter<items>(this, android.R.layout.simple_list_item_2,android.R.id.text1,itemList) {
             @Override
             public View getView(int pos, View convert, ViewGroup group) {
@@ -75,6 +76,16 @@ public class CartActivity extends AppCompatActivity {
         btBack.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                mainAct();
+                finish();
+            }
+        });
+        btClear.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Toast toast=Toast.makeText(getApplicationContext(),"購物車已清空!",Toast.LENGTH_SHORT);
+                toast.show();
+                itemList.clear();
                 mainAct();
                 finish();
             }

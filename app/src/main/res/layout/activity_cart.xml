@@ -11,9 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="以現金結帳"
-        app:layout_constraintBottom_toTopOf="@id/btBack"
+        app:layout_constraintBottom_toTopOf="@id/btClear"
         app:layout_constraintEnd_toStartOf="@+id/btJKO"
-        app:layout_constraintHorizontal_bias="0.009"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -21,7 +20,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="街口支付結帳"
-        app:layout_constraintBottom_toTopOf="@id/btBack"
+        app:layout_constraintBottom_toTopOf="@id/btClear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/btCash" />
     <Button
@@ -30,6 +29,15 @@
         android:layout_height="wrap_content"
         android:text="返回"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btClear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="清空購物車"
+        app:layout_constraintBottom_toTopOf="@id/btBack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
     <ListView
